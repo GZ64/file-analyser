@@ -10,7 +10,7 @@
         .container { max-width: 1200px; margin: 0 auto; }
 
         button {
-            padding: 10px 20px;
+            padding: 10px 20px 20px 20px;
             font-size: 16px;
             background: #4CAF50;
             color: white;
@@ -88,13 +88,14 @@
 
         h3 { margin-top: 0; color: #333; }
         hr { margin: 20px 0; }
+        .top { position: relative; top: 6px}
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>📁 Analyseur de dossier professionnel</h1>
+    <h1><img src="./img/folder.png" alt="icône dossier" />Analyseur de dossier</h1>
 
-    <button id="selectBtn">📂 Choisir un dossier</button>
+    <button id="selectBtn"><img src="./img/folder.png" alt="icône dossier" class="top" /> Choisir un dossier</button>
 
     <div class="progress-container" id="progressContainer">
         <div class="progress-bar" id="progressBar">0%</div>
@@ -103,19 +104,19 @@
     <div class="grid">
         <!-- Colonne gauche : Résultats -->
         <div class="card">
-            <h3>📊 Résultats de l'analyse</h3>
+            <h3><img src="./img/bar_chart.png" alt="icône dossier" class="top" />Résultats de l'analyse</h3>
             <div id="results"></div>
             <canvas id="myChart" width="400" height="400"></canvas>
         </div>
 
         <!-- Colonne droite : Dossiers récents + Fichiers lourds -->
         <div class="card">
-            <h3>🕒 Dossiers récents</h3>
+            <h3><img src="./img/history.png" alt="icône historique" class="top" /> Dossiers récents</h3>
             <div id="recentFolders"></div>
 
             <hr>
 
-            <h3>🏆 Top 10 des fichiers les plus lourds</h3>
+            <h3><img src="./img/award.png" alt="icone" class="top" />Top 10 des fichiers les plus lourds</h3>
             <div id="largestFiles" class="file-list"></div>
         </div>
     </div>

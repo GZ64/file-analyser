@@ -29,10 +29,10 @@ async function loadRecentFolders() {
     recentFoldersDiv.innerHTML = folders.map(folder => `
     <div class="recent-folder" data-path="${folder.path}">
       <div>
-        <strong>📁 ${folder.name}</strong><br>
+        <strong><img src="./img/folder.png" alt="icône dossier" class="top" /> ${folder.name}</strong><br>
         <small>${folder.path} - ${new Date(folder.timestamp).toLocaleDateString()}</small>
       </div>
-      <button class="delete-btn" data-path="${folder.path}">🗑️</button>
+      <button class="delete-btn" data-path="${folder.path}"><img src="./img/delete.png" alt="icône corbeille" /></button>
     </div>
   `).join('');
 
@@ -66,7 +66,7 @@ function displayLargestFiles(files) {
     largestFilesDiv.innerHTML = files.map((file, index) => `
     <div class="file-item">
       <div class="file-name">${index + 1}. ${file.name}</div>
-      <div class="file-size">📦 ${file.sizeFormatted}</div>
+      <div class="file-size"><img src="./img/weight.png" alt="icône poids" class="top" />${file.sizeFormatted}</div>
       <small style="color: #999;">${file.path}</small>
     </div>
   `).join('');
@@ -79,8 +79,8 @@ async function analyzeFolder(dirPath) {
     progressContainer.style.display = 'block';
     progressBar.style.width = '0%';
     progressBar.textContent = '0%';
-    resultsDiv.innerHTML = '<p>⏳ Analyse du dossier... Veuillez patienter</p>';
-    largestFilesDiv.innerHTML = '<p>⏳ Recherche des fichiers lourds...</p>';
+    resultsDiv.innerHTML = '<p><img src="./img/hourglass.png" alt="icône sablier" class="top" />Analyse du dossier... Veuillez patienter</p>';
+    largestFilesDiv.innerHTML = '<p><img src="./img/hourglass.png" alt="icône sablier" class="top" />Recherche des fichiers lourds...</p>';
 
     const stats = await window.electronAPI.scanDir(dirPath);
     const sizeMB = (stats.totalSize / (1024 * 1024)).toFixed(2);
@@ -88,10 +88,10 @@ async function analyzeFolder(dirPath) {
     const affichageTaille = stats.totalSize > 1073741824 ? `${sizeGB} Go` : `${sizeMB} Mo`;
 
     resultsDiv.innerHTML = `
-    <p><strong>📂 Dossier :</strong> ${dirPath}</p>
-    <p><strong>📄 Fichiers :</strong> ${stats.fileCount.toLocaleString()}</p>
-    <p><strong>📁 Dossiers :</strong> ${stats.dirCount.toLocaleString()}</p>
-    <p><strong>💾 Taille totale :</strong> ${affichageTaille}</p>
+    <p><strong><img src="./img/folder.png" alt="icône dossier" class="top" />Dossier :</strong> ${dirPath}</p>
+    <p><strong><img src="./img/file.png" alt="icône fichier" class="top" />Fichiers :</strong> ${stats.fileCount.toLocaleString()}</p>
+    <p><strong><img src="./img/folder.png" alt="icône dossier" class="top" />Dossiers :</strong> ${stats.dirCount.toLocaleString()}</p>
+    <p><strong><img src="./img/weight.png" alt="icône poids" class="top" />Taille totale :</strong> ${affichageTaille}</p>
   `;
 
     // Afficher les fichiers les plus lourds
